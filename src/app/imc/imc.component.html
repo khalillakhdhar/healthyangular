@@ -1,0 +1,22 @@
+<form #myform="ngForm" (submit)="calculeIMC()">
+    <div class="mb-3">
+      <label  class="form-label">Poids</label>
+      <input type="number" min="0" [(ngModel)]="poids" required class="form-control" name="poid">
+   
+    </div>
+    <div class="mb-3">
+      <label  class="form-label">taille</label>
+      <input type="number" min="0" [(ngModel)]="taille" required class="form-control" name="poid">
+   
+    </div>
+    
+    <button type="submit" [disabled]="myform.invalid || poids<10 || taille<1" class="btn btn-primary">Calculer</button>
+  </form>
+  <div *ngIf="imc!=0">
+l'indice de masse corporelle est de : {{imc}}
+<!-- afficher les message avec des couleurs différente-->
+<span [ngClass]="{'text-warning':message=='maigre','text-success':message=='normal','text-primary':message=='en surpoids','text-danger':message=='obése'}" >
+
+vous êtes : {{message}}
+</span>
+  </div>
